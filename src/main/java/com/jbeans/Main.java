@@ -17,5 +17,7 @@ public class Main {
         String reversmsg="Hello and welcome!";
         StringBuilder sb=new StringBuilder(reversmsg);
         Stream.of(sb.reverse()).forEach(System.out::println);
+        System.out.println("########################################################################");
+        //String Repeated charecter
     }
 }
