@@ -1,5 +1,8 @@
 package com.jbeans;
 
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -19,5 +22,9 @@ public class Main {
         Stream.of(sb.reverse()).forEach(System.out::println);
         System.out.println("########################################################################");
         //String Repeated charecter
+        String msg="Hello and welcome!";
+        Map<Character, Long> charmap=msg.chars().mapToObj(ch -> (char)ch).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println("String Repeated charecter");
+        charmap.entrySet().forEach(System.out::println);
     }
 }
