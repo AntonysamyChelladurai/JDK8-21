@@ -15,6 +15,15 @@ public class Employee {
     public Employee() {
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", dep='" + dep + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

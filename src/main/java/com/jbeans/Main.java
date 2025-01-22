@@ -1,7 +1,9 @@
 package com.jbeans;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,11 +31,16 @@ public class Main {
 
         System.out.println("########################################################################");
 
-        Employee emp1 = new Employee("Antony",10000,"CS");
+        Employee emp1 = new Employee("Antony",30000,"CS");
         Employee emp2 = new Employee("Aravid",20000,"CS");
         Employee emp3 = new Employee("Muthu",10500,"HR");
         Employee emp4 = new Employee("Siva",30000,"devops");
         Employee emp5 = new Employee("Raja",20000,"Dev");
+        Employee emp6 = new Employee("Mahesh",20000,"CS");
+        Employee emp7 = new Employee("Ragu",23000,"CS");
+        Employee emp8 = new Employee("vishnu",40500,"HR");
+        Employee emp9 = new Employee("Ravi",26000,"devops");
+        Employee emp10 = new Employee("Muthu",24000,"Dev");
 
         List<Employee> emplist=new ArrayList<>();
         emplist.add(emp1);
@@ -41,6 +48,11 @@ public class Main {
         emplist.add(emp3);
         emplist.add(emp4);
         emplist.add(emp5);
+        emplist.add(emp6);
+        emplist.add(emp7);
+        emplist.add(emp8);
+        emplist.add(emp9);
+        emplist.add(emp10);
         Optional<Employee> salary=emplist.stream().sorted(Comparator.comparing(Employee::getSalary)).toList().reversed().stream().findFirst();
         System.out.println("Top salary :: "+salary.get().salary);
         System.out.println("########################################################################");
@@ -53,5 +65,30 @@ public class Main {
         StrigManupulation sm=new StrigManupulation();
         int low=sm.lengthOfLastWord("Hello and welcome!");
         System.out.println("LengthOfLastWord :: "+low);
+
+        System.out.println("########################################################################");
+        System.out.println("########### 25000 above salary List ###################");
+        Predicate<Employee> above25K=emp->emp.getSalary()>=25000;
+        emplist.stream().filter(above25K).toList().stream().forEach(System.out::println);
+        System.out.println("########################################################################");
+        System.out.println("########### Second largest salary List ###################");
+        /*Optional<Employee>secondEmple=emplist.stream().sorted(Comparator.comparing(Employee::getSalary)).toList().stream().distinct().toList().reversed().stream().skip(1).findFirst();
+        *  System.out.println("Second Largest Employee:: "+secondEmple.get().toString());
+        *
+        * */
+         Map<Employee, Long> emplMap = emplist.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        emplMap.entrySet().stream().forEach(System.out::println);
+        //.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).collect(Collectors.toList());
+        System.out.println("########################################################################");
+        System.out.println("########### Java 8 to 21 All Concept ###################");
+        Java8to21 j21=new Java8to21();
+        System.out.println("########### Java 8 Functional interface ###################");
+        j21.funcPrg();
+        int[] numarr=new int[]{12,3,5,3,8,93,7,9,3,1,6,9,3,2};
+        int tot =Arrays.stream(numarr).sum();
+        System.out.println("Total :: "+tot);
+        System.out.println("########### Java 8 -21 String ###################");
+        j21.quice();
+
     }
 }
